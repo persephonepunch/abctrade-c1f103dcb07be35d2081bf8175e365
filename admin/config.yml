@@ -1,0 +1,423 @@
+backend:
+  name: git-gateway
+  accept_roles:
+    - admin
+    - editor
+media_folder: theme/assets/images
+public_folder: /assets/images
+collections:
+  - name: pages
+    label: Pages
+    identifier_field: title
+    extension: md
+    create: false
+    delete: false
+    slug: '{{slug}}'
+    editor:
+      preview: false
+    folder: cms/pages
+    fields:
+      - label: Title
+        name: title
+        widget: string
+      - label: Publish Date
+        name: date
+        widget: datetime
+      - label: Layout
+        widget: hidden
+        name: layout
+        default: '{{slug}}.html'
+      - label: Seo
+        name: seo
+        widget: object
+        collapsed: true
+        fields:
+          - label: Title
+            name: title
+            widget: string
+            required: false
+          - label: Description
+            name: description
+            widget: string
+            required: false
+          - label: No index
+            name: noindex
+            widget: boolean
+            default: false
+            required: false
+          - label: Open Graph Title
+            name: og:title
+            widget: string
+            required: false
+          - label: Open Graph Image
+            name: og:image
+            widget: image
+            required: false
+            media_library:
+              config:
+                multiple: false
+          - label: Twitter Title
+            name: twitter:title
+            widget: string
+            default: summary
+            required: false
+          - label: Twitter Card
+            name: twitter:card
+            widget: string
+            default: summary
+            required: false
+          - label: Twitter Site
+            name: twitter:site
+            widget: string
+            required: false
+          - label: Twitter Creator
+            name: twitter:creator
+            widget: string
+            required: false
+          - label: Additional HTML tags
+            name: additional_tags
+            widget: text
+            required: false
+  - label: Theme Settings
+    name: settings
+    identifier_field: title
+    extension: json
+    create: false
+    delete: false
+    slug: '{{slug}}'
+    editor:
+      preview: false
+    files:
+      - label: General
+        name: site
+        file: cms/_data/settings/site.json
+        fields:
+          - label: Title
+            name: title
+            widget: hidden
+            default: General
+          - hint: Full domain url (needed for a correct sitemap file)
+            name: domain
+            label: Domain
+            widget: string
+            required: false
+          - name: favicon
+            label: Favicon
+            widget: image
+            allow_multiple: false
+            required: false
+          - name: apple_touch_icon
+            label: Apple Touch Icon
+            widget: image
+            allow_multiple: false
+            required: false
+          - name: header_additional_content
+            label: Additional Content Header
+            hint: Content here will be placed before </head> tag
+            widget: text
+            required: false
+          - name: footer_additional_content
+            label: Additional Content Footer
+            hint: Content here will be placed before </body> tag
+            widget: text
+            required: false
+          - name: images_optimization
+            label: Images Optimization
+            widget: object
+            collapsed: false
+            fields:
+              - label: Image Formats
+                name: formats
+                widget: select
+                multiple: true
+                options:
+                  - label: Avif
+                    value: avif
+                  - label: Webp
+                    value: webp
+              - label: Image Dimensions
+                name: dimensions
+                widget: select
+                multiple: true
+                options:
+                  - label: '500'
+                    value: 500
+                  - label: '800'
+                    value: 800
+                  - label: '1080'
+                    value: 1080
+                  - label: '1600'
+                    value: 1600
+                  - label: '2000'
+                    value: 2000
+                  - label: '2600'
+                    value: 2600
+      - label: Colors
+        name: colors
+        file: cms/_data/colors.json
+        fields:
+          - label: Title
+            name: title
+            widget: hidden
+            default: Colors
+      - label: Texts
+        name: texts
+        file: cms/_data/texts.json
+        fields:
+          - label: Title
+            name: title
+            widget: hidden
+            default: Texts
+          - hint: 'Original text: FIRST NAME, key: 119ca21b'
+            label: Text
+            name: 119ca21b
+            widget: string
+          - hint: 'Original text: LAST NAME, key: 1c6105d5'
+            label: Text
+            name: 1c6105d5
+            widget: string
+          - hint: 'Original text: FIRM NAME, key: -5f0854d3'
+            label: Text
+            name: '-5f0854d3'
+            widget: string
+          - hint: 'Original text: EMAIL, key: 3f0537c'
+            label: Text
+            name: 3f0537c
+            widget: string
+          - hint: >-
+              Original text: Thank you! Your submission has been received!, key:
+              5a0ea5a1
+            label: Text
+            name: 5a0ea5a1
+            widget: string
+          - hint: >-
+              Original text: Oops! Something went wrong while submitting the
+              form., key: -7c112e99
+            label: Text
+            name: '-7c112e99'
+            widget: string
+          - hint: 'Original text: exceptional support, key: -10563997'
+            label: Text
+            name: '-10563997'
+            widget: string
+          - hint: >-
+              Original text: Exclusive digital resources plus dedicated Client
+              Specialists available in person and virtually, key: -190cb599
+            label: Text
+            name: '-190cb599'
+            widget: text
+          - hint: 'Original text: generous discount, key: 1a668131'
+            label: Text
+            name: 1a668131
+            widget: string
+          - hint: >-
+              Original text: abcTrade members receive 25% off full priced items,
+              and 10% off sale-priced items, key: -7598ee22
+            label: Text
+            name: '-7598ee22'
+            widget: string
+          - hint: 'Original text: exclusive opportunities, key: -29dbab51'
+            label: Text
+            name: '-29dbab51'
+            widget: string
+          - hint: >-
+              Original text: VIP shopping experiences for you and your clients,
+              plus tiered rewards on spending, key: -45fe21cc
+            label: Text
+            name: '-45fe21cc'
+            widget: string
+          - hint: 'Original text: designer trade program at abc, key: 6210b862'
+            label: Text
+            name: 6210b862
+            widget: string
+          - hint: 'Original text: in-person and online, key: 40cea7bf'
+            label: Text
+            name: 40cea7bf
+            widget: string
+          - hint: >-
+              Original text: Get inspired with an in-store or virtual
+              consultation. Discover our vast Digital Library of customization
+              options., key: 7bfb4f85
+            label: Text
+            name: 7bfb4f85
+            widget: text
+          - hint: 'Original text: we work with your budget, key: -20c8332b'
+            label: Text
+            name: '-20c8332b'
+            widget: string
+          - hint: >-
+              Original text: Achieve your project’s specific goals with no
+              sacrifice on quality., key: 4ca4be39
+            label: Text
+            name: 4ca4be39
+            widget: string
+          - hint: 'Original text: from concept to completion, key: 54442af3'
+            label: Text
+            name: 54442af3
+            widget: string
+          - hint: >-
+              Original text: For any custom project, our dedicated team of
+              experts will partner with you to ensure a smooth and enjoyable
+              experience for both you and your clients., key: -227995a3
+            label: Text
+            name: '-227995a3'
+            widget: text
+          - hint: 'Original text: the abcTrade difference, key: 64f4b7cc'
+            label: Text
+            name: 64f4b7cc
+            widget: string
+          - hint: 'Original text: endless possibilities, key: -271e3c9b'
+            label: Text
+            name: '-271e3c9b'
+            widget: string
+          - hint: >-
+              Original text: Design with our digital swatch library of 1500+
+              carpet and upholstery options, key: 6556fdd0
+            label: Text
+            name: 6556fdd0
+            widget: string
+          - hint: 'Original text: unique benefits, key: -4dba11d5'
+            label: Text
+            name: '-4dba11d5'
+            widget: string
+          - hint: >-
+              Original text: Get exciting perks at abc restaurants, exclusive
+              access to industry events, and tiered rewards on spending., key:
+              -69f93060
+            label: Text
+            name: '-69f93060'
+            widget: text
+          - hint: 'Original text: supporting handmade, key: -3905c22f'
+            label: Text
+            name: '-3905c22f'
+            widget: string
+          - hint: >-
+              Original text: Custom-made and vintage pieces honor our commitment
+              to preserve artisanal traditions., key: -75fd8c0b
+            label: Text
+            name: '-75fd8c0b'
+            widget: string
+          - hint: 'Original text: commitment to the planet, key: 2ca35d21'
+            label: Text
+            name: 2ca35d21
+            widget: string
+          - hint: >-
+              Original text: We uphold the highest standards of quality. We
+              source from ethical supply chains and we don’t use toxic
+              chemicals., key: 30b4d669
+            label: Text
+            name: 30b4d669
+            widget: text
+      - label: Images
+        name: images
+        file: cms/_data/images.json
+        fields:
+          - label: Title
+            name: title
+            widget: hidden
+            default: Images
+          - label: Image
+            name: 65637ba5
+            widget: object
+            fields:
+              - name: url
+                label: Image Url
+                widget: image
+                allow_multiple: false
+                required: false
+              - name: alt
+                label: Image Alt
+                widget: string
+                required: false
+          - label: Image
+            name: '-2d3ed22e'
+            widget: object
+            fields:
+              - name: url
+                label: Image Url
+                widget: image
+                allow_multiple: false
+                required: false
+              - name: alt
+                label: Image Alt
+                widget: string
+                required: false
+          - label: Image
+            name: '-2b89f98f'
+            widget: object
+            fields:
+              - name: url
+                label: Image Url
+                widget: image
+                allow_multiple: false
+                required: false
+              - name: alt
+                label: Image Alt
+                widget: string
+                required: false
+          - label: Image
+            name: '-32e5c17f'
+            widget: object
+            fields:
+              - name: url
+                label: Image Url
+                widget: image
+                allow_multiple: false
+                required: false
+              - name: alt
+                label: Image Alt
+                widget: string
+                required: false
+          - label: Image
+            name: '-24eb99ff'
+            widget: object
+            fields:
+              - name: url
+                label: Image Url
+                widget: image
+                allow_multiple: false
+                required: false
+              - name: alt
+                label: Image Alt
+                widget: string
+                required: false
+          - label: Image
+            name: '-2181e8c1'
+            widget: object
+            fields:
+              - name: url
+                label: Image Url
+                widget: image
+                allow_multiple: false
+                required: false
+              - name: alt
+                label: Image Alt
+                widget: string
+                required: false
+          - label: Image
+            name: '-372acdda'
+            widget: object
+            fields:
+              - name: url
+                label: Image Url
+                widget: image
+                allow_multiple: false
+                required: false
+              - name: alt
+                label: Image Alt
+                widget: string
+                required: false
+          - label: Image
+            name: '-2f30999d'
+            widget: object
+            fields:
+              - name: url
+                label: Image Url
+                widget: image
+                allow_multiple: false
+                required: false
+              - name: alt
+                label: Image Alt
+                widget: string
+                required: false
+publish_mode: editorial_workflow
